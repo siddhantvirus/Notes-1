@@ -30,3 +30,64 @@ It is a simulation application that can be used to make virtual networks and tes
     * -P <Number>(We can use this flag to run parallel connections)
   - UDP
     For UDP we simply add the `-u` flag at the beginning after the `iperf` command and the remaning flags are exactly the same.
+    * -b (We can specify the bandwidth that has to be use for the connections/ the default bandwidth is 1 Mbps)
+
+* HTTPs Traffic test
+
+1. Start server in a host say "h4" with a sjimple built in python server `python -m SimpleHTTPServer 80<port number>`
+2. We can request for the server though `curl http://10.1.1.4<IP address of server>/`
+
+[ Note ]
+If we want to simulate a large number of requests say 500 we need to use some application like "Apache Bench"
+* command - ab -n 500 -c 50 http://10.1.1.4/
+          - -n (The number of connections)
+          - -c (Number of coneections to add every second to the server)
+
+= Making Custom Topologies =
+
+* Import Libraries
+
+from mininet.topo import Topo
+from mininet.net import Mininet
+
+* Basic Functions
+  - addSwitch
+  - addHost
+  - addLink
+
+* Example
+
+from mininet.topo import Topo
+from mininet.net import Mininet
+
+class SingleSwitchTopo(Topo)
+  def build(self)
+    s1=self.addSwitch('s1')
+    
+    h1=self.addHost('h1',mac=00:00:00:00:00:01,ip=10.0.0.1)
+    h2=self.addHost('h2',mac=00:00:00:00:00:02,ip=10.0.0.2)
+    h3=self.addHost('h3',mac=00:00:00:00:00:03,ip=10.0.0.3)
+    h4=self.addHost('h4',mac=00:00:00:00:00:04,ip=10.0.0.4)
+    
+    self.addLink(h1,s1)
+    self.addLink(h2,s1)
+    self.addLink(h3,s1)
+    self.addLink(h4,s1)
+    
+if _name_ = ''_main_':
+  topo = SingleSwitchTopo()
+  c1 = RemoteController('c1', ip='127.0.0.1')
+  net = Mininet(topo=topo, controller=c1)
+  set.start()
+  net.pingAll() # This will ping all hosts upon startup itself
+  
+  h1 = net.get('h1')
+  h2 = net.get('h2')
+  h1.cmd('iperf -s &')
+  h2.cmd('iperf -c 10.0.0.1 -i 10 -t 30')
+  
+  net.configLinkStatus('s1','h1',down)
+  net.pingAll()
+  net.configLinkStatus('s1','h1',down)
+  net.pingAll()
+
