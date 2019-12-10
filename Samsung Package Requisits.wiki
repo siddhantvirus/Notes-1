@@ -1,0 +1,18 @@
+= Controler =
+
+* Ryu 
+    sudo pip install ryu
+
+= Testbed =
+
+* mininet
+  - Arch
+      yay -S mininet-git
+  - Ubuntu
+      sudo apt-get install mininet
+      
+= Misc Applications =
+
+* Wireshark
+* iperf
+* apache2-utils / apache-tools

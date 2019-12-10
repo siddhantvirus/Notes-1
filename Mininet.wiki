@@ -1,0 +1,32 @@
+= Definition = 
+
+It is a simulation application that can be used to make virtual networks and test our controller.
+
+= Basic flags =
+
+* --controller=remote,ip=127.0.0.1 ( we can specify the controler that we are using )
+* --mac ( So that the MAC addresses of the devices are human readable )
+* -i 10.0.0.0/24 ( specify the subnet id )
+* --switch=ovsk,protocol=OpenFlow13 ( We can specify what type of switch to use and what type of protocol to use to manage the Infrastructure layer )
+* --topo=single,4 ( we can specify the topologies for the switches and the hosts )
+
+= Basic Commands =
+
+* net (Shows the various devices, their interfaces and which interface they are connected to )
+* links ( shows which interface is connected to what interface )
+* dump ( gives basic information of all the evices in the network like what is their ip address, interfaces and what protocol is the switch using )
+* pingall ( here each host pings every other host )
+* xterm <device name> ( it is used to launch a terminal in that device so that we can run commands in that device such as if config )
+* <device name> <command> ( this is also used to run commands in a device if we dont care much about the output from the devices )
+
+= Testing applications =
+
+* iperf 
+  - TCP
+    h4<host name> iperf -s (this is run on a host to emulate a server)
+    iperf -c 10.1.1.4<IP address of the server> -i 10 -t 30
+    * -i <Number>(to specify the request interval)
+    * -t <Number>(to specify the time for which the test will be run)
+    * -P <Number>(We can use this flag to run parallel connections)
+  - UDP
+    For UDP we simply add the `-u` flag at the beginning after the `iperf` command and the remaning flags are exactly the same.

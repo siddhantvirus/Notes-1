@@ -1,0 +1,37 @@
+= TCP/IP Layers =
+
+* Application Layer (HTTP)
+* Transport Layer (TCP/UDP)
+* Internet Layer (IPv4/IPv6)
+* Link Layer
+
+[ Note ]
+- We use wireshark to track packets and we can see what each packet is for. For example, We can ping google.com and 'curl' google.com. In the 1st case we will see a TCP packet in wireshark whereas in the second case we will see a http packet request response( We know that it is Http because we will see that it is at port 80 and that there is information about google.com )
+
+= Ethernet (Layer2) =
+
+This is the second layer and unlike TCp layer what uses IP addresses this layer uses MAC addresses. We can see the MAC address in the packets in wireshark for a specific interface. Each interface has a unice MAC that is used to identify it and send packets to it along with its IP address.
+
+* Neighbour Discovery
+
+When a new network is started up, then each router knows only about itself, i.e., its own MAC and IP address. So if it has to send a packet to say IP address 10.0.2, it will put that as its destination but will leave the destination MAC empty. Then the switch sends out a broadcast message to all the routers to ask who has the ip address 10.0.0.2. The one that is 10.0.0.2 will give a response and that will contain its MAC. That is then added to the address table of the switch and sent to the requesting router which can now forward the packet it wants. This is what mostly happens in the beginning when the network is started up.
+
+= ARP (Address Resolution Protocol) =
+
+* ARP Table 
+  - To see table run command ` arp -a `
+* ARP Demo
+  - Here we can ping one interface from another and motitor it with wireshark. We will see the neighbor discovery packets that we discussed before.
+
+= Traditional Switches =
+
+It is a computer device that is used to connect multiple devices together. It maintains a MAC Table that maps to each port to the MAC address of the devices connected to it.
+
+* Steps in a Switch
+  1. Recieve a Packet
+  2. Read the destination MAC in the packet.
+  3. Look up the MAC table for the Port
+  4. Forward the packet to the MAC address through the Port.
+
+[ Note ]
+Use command $ sudo ovs-appctl fdb/show s1(switch name) to print the MAC table in the switch.

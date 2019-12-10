@@ -1,0 +1,6 @@
+= Commands =
+1. sudo wireshark //Capture Packets
+2. sudo ryu-manager ryu.app.simple_switch_13 // start SDN controlet
+3. sudo mn --controller=remote,ip=127.0.0.1 --mac --switch=ovsk,protocol=OpenFlow13 //Setup test topology
+4. sudo ovs-vsctl show // show Available interfaces
+5. sudo ovs-ofctl -O OpenFlow13 dump-flows s1(Switch name) // Show Flows
