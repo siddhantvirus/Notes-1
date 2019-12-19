@@ -1,9 +1,9 @@
 = Definition =
 
-It introduces a layer or inerface between the application layer and the Infrastructure layer. Traditionally the control is with each switch which uses some
-routing algorithm life OSPF to detrmin the best path to send the packet through. Instead, in SDN there is a central control system that decides the path or
-flow of the packets based on the requirements for the applications. This helps abstract the coplex low-level commands that are user to achieve this goal.
-By useing high level languages in the control layer simpal commands can achieve complex tasks.
+It introduces a layer or interface between the application layer and the Infrastructure layer. Traditionally the control is with each switch which uses some
+routing algorithm like OSPF to determine the best path to send the packet through. Instead, in SDN there is a central control system that decides the path or
+flow of the packets based on the requirements for the applications. This helps abstract the complex low-level commands that are used to achieve this goal.
+By using high level languages in the control layer simple commands can achieve complex tasks.
 
 = Uses =
 
